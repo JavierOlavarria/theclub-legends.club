@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE CLUB</title>
+  <meta name="description" content="Portraits of Living Legends & Personalities by Fabián Pérez" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      background: #ffffff;
+      color: #222222;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.3;
+    }
+    a { color: #222222; text-decoration: none; }
+    a:hover { color: #222222; text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 40px 0; }
+    p { margin-bottom: 18px; }
+
+    /* ===== NAV ===== */
+    #nav-wrapper {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000; background: #ffffff; border-bottom: 1px solid #e8e8e8;
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 30px;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.1rem; font-weight: 700; letter-spacing: 0.12em;
+      color: #222222; cursor: pointer;
+    }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links li { position: relative; }
+    .nav-links > li > a,
+    .nav-links > li > span {
+      display: block; padding: 0 10px;
+      font-family: 'Source Sans 3', Helvetica, sans-serif;
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #222222; cursor: pointer;
+      line-height: 60px; white-space: nowrap;
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li > span:hover { color: #555; text-decoration: none; }
+
+    /* Dropdowns */
+    .dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: #fff; border: 1px solid #e8e8e8; border-top: none;
+      min-width: 220px; z-index: 2000; padding: 6px 0;
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: block; padding: 9px 18px;
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #222; cursor: pointer;
+    }
+    .dropdown-menu a:hover { background: #f5f5f5; text-decoration: none; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 5px;
+    }
+    .hamburger span { display: block; width: 22px; height: 1px; background: #222; }
+
+    /* Mobile menu */
+    #mobile-menu {
+      display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: #fff; z-index: 999; overflow-y: auto; padding: 10px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    #mobile-menu.open { display: block; }
+    #mobile-menu a {
+      display: block; padding: 12px 30px;
+      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #222; border-bottom: 1px solid #f0f0f0; cursor: pointer;
+    }
+    #mobile-menu a:hover { background: #f9f9f9; text-decoration: none; }
+    #mobile-menu .mob-sub { padding-left: 50px; font-size: 0.7rem; color: #555; }
+
+    /* ===== PAGES ===== */
+    .page { display: none; padding-top: 60px; min-height: calc(100vh - 60px); }
+    .page.active { display: block; }
+
+    /* ===== MAIN SCROLLING PAGE ===== */
+    #page-main { display: block; padding-top: 60px; }
+
+    /* ===== SECTION WRAPPER ===== */
+    .section-inner {
+      max-width: 800px; margin: 0 auto; padding: 70px 30px;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid #e0e0e0; margin: 0;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      text-align: center;
+      padding-bottom: 30px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .section-header .overtitle {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.01em; text-transform: none;
+      color: #222; margin-bottom: 18px;
+    }
+    .section-header h1 { font-size: 1.9rem; }
+    .section-header h2 {
+      font-size: 1rem; font-weight: 400; color: #666;
+      margin-top: 8px; font-style: italic;
+    }
+
+    /* ===== HOME SECTION ===== */
+    .home-subtitle {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: #222; text-align: center; margin-bottom: 35px;
+    }
+    .home-hero-img { width: 100%; margin: 0 auto 40px; }
+    .home-arnold { width: 100%; margin: 0 auto 0; }
+    .home-sig {
+      display: block;
+      max-width: 260px;
+      margin: 20px auto 35px;
+      mix-blend-mode: multiply;
+      background: transparent;
+    }
+    .home-body { text-align: center; }
+    .home-body h3 {
+      font-size: 1.35rem; font-weight: 400; font-style: italic;
+      margin-bottom: 22px; line-height: 1.7;
+      font-family: 'Libre Baskerville', Georgia, serif;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .img-caption {
+      font-size: 0.72rem; color: #888;
+      font-style: italic; margin-top: 6px; margin-bottom: 30px;
+    }
+
+    /* ===== MASTERPIECE SECTION ===== */
+    .masterpiece-item { margin-bottom: 50px; }
+    .masterpiece-item h3 {
+      font-size: 0.9rem; font-weight: 600;
+      font-family: 'Source Sans 3', sans-serif;
+      letter-spacing: 0.04em; margin: 14px 0 8px;
+    }
+    .masterpiece-item img { width: 100%; margin-bottom: 6px; }
+
+    /* ===== CONTACT SECTION ===== */
+    #section-contact { background: #fafafa; }
+    .contact-body { text-align: center; }
+    .contact-body h3 {
+      font-size: 1.1rem; font-style: italic; margin-bottom: 20px;
+    }
+    .contact-body a { color: #222; text-decoration: underline; }
+
+    /* ===== SEPARATE PAGES ===== */
+    .page-inner {
+      max-width: 800px; margin: 0 auto; padding: 60px 30px 80px;
+    }
+    .page-header {
+      text-align: center; border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 30px; margin-bottom: 50px;
+    }
+    .page-header .overtitle {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.01em; text-transform: none;
+      color: #222; margin-bottom: 18px;
+    }
+    .page-header h1 { font-size: 1.9rem; }
+
+    /* Frames */
+    .frames-img { width: 100%; max-width: 600px; margin: 20px auto; }
+
+    /* Press */
+    .press-pullquote {
+      font-size: 1.35rem; font-style: italic;
+      font-family: 'Libre Baskerville', serif;
+      line-height: 1.5; text-align: center; margin: 30px 0 10px;
+    }
+    .press-attr { text-align: center; font-size: 0.76rem; color: #888; margin-bottom: 35px; }
+    .press-quote { margin: 30px 0; padding-bottom: 30px; border-bottom: 1px solid #ebebeb; }
+    .press-quote p { font-size: 0.8rem; letter-spacing: 0.03em; line-height: 1.9; color: #333; margin-bottom: 8px; }
+    .press-quote .attr { color: #888; font-size: 0.72rem; }
+
+    /* Gallery */
+    .gallery-intro {
+      text-align: center; max-width: 640px; margin: 0 auto 45px;
+      font-style: italic; font-family: 'Libre Baskerville', serif;
+      font-size: 1rem; color: #555;
+    }
+    .legend-entry { margin-bottom: 50px; padding-bottom: 50px; border-bottom: 1px solid #ebebeb; }
+    .legend-entry:last-child { border-bottom: none; }
+    .legend-entry h3 { font-size: 1.05rem; margin-bottom: 16px; }
+    .legend-entry img { width: 100%; margin-bottom: 14px; }
+    .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .two-up img { margin-bottom: 0; }
+
+    /* Neo */
+    .neo-lead {
+      font-style: italic; text-align: center; margin-bottom: 40px;
+      font-size: 1rem; color: #555;
+    }
+    .neo-byline { text-align: center; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 5px; }
+    .neo-subtitle { text-align: center; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 35px; }
+    .blockquote-inline { font-style: italic; font-size: 1.05rem; color: #444; margin: 25px 0; line-height: 1.7; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center; padding: 30px 20px;
+      font-size: 0.7rem; color: #bbb;
+      letter-spacing: 0.06em; border-top: 1px solid #ebebeb;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .section-inner, .page-inner { padding: 40px 18px 60px; }
+      .home-headline { font-size: 1.25rem; }
+      .two-up { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<div id="nav-wrapper">
+  <nav>
+    <span class="nav-logo" onclick="goHome()">THE CLUB</span>
+    <ul class="nav-links">
+      <li><a onclick="goHome()">Home</a></li>
+      <li><a onclick="scrollToSection('section-about')">About</a></li>
+      <li><a onclick="scrollToSection('section-fabian')">Fabián Pérez</a></li>
+      <li><a onclick="scrollToSection('section-masterpiece')">Your Masterpiece</a></li>
+      <li><a onclick="showPage('book-download')">The Club Book</a></li>
+      <li><a onclick="showPage('frames')">Frames</a></li>
+      <li><a onclick="showPage('press')">Press &amp; Critics</a></li>
+      <li class="dropdown">
+        <span>Living Legends</span>
+        <div class="dropdown-menu">
+          <a onclick="showPage('living-legends')">Living Legends</a>
+          <a onclick="showPage('film-legends')">Film Legends</a>
+          <a onclick="showPage('music-legends')">Music Legends</a>
+          <a onclick="showPage('dignitaries')">Dignitaries, Royalty &amp; Moguls</a>
+          <a onclick="showPage('sports-legends')">Sports Legends</a>
+        </div>
+      </li>
+      <li><a onclick="showPage('neo')">Neo-Emotionalism</a></li>
+      <li><a onclick="showPage('sales-download')">Sales Pack</a></li>
+      <li><a onclick="scrollToSection('section-contact')">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</div>
+
+<!-- Mobile menu -->
+<div id="mobile-menu">
+  <a onclick="goHome();toggleMobile()">Home</a>
+  <a onclick="scrollToSection('section-about');toggleMobile()">About</a>
+  <a onclick="scrollToSection('section-fabian');toggleMobile()">Fabián Pérez</a>
+  <a onclick="scrollToSection('section-masterpiece');toggleMobile()">Your Masterpiece</a>
+  <a onclick="showPage('book-download');toggleMobile()">The Club Book Download</a>
+  <a onclick="showPage('frames');toggleMobile()">Frames</a>
+  <a onclick="showPage('press');toggleMobile()">Press &amp; Critics</a>
+  <a onclick="showPage('living-legends');toggleMobile()">Living Legends</a>
+  <a class="mob-sub" onclick="showPage('film-legends');toggleMobile()">Film Legends</a>
+  <a class="mob-sub" onclick="showPage('music-legends');toggleMobile()">Music Legends</a>
+  <a class="mob-sub" onclick="showPage('dignitaries');toggleMobile()">Dignitaries, Royalty &amp; Moguls</a>
+  <a class="mob-sub" onclick="showPage('sports-legends');toggleMobile()">Sports Legends</a>
+  <a onclick="showPage('neo');toggleMobile()">Neo-Emotionalism</a>
+  <a onclick="showPage('sales-download');toggleMobile()">Sales Pack Download</a>
+  <a onclick="scrollToSection('section-contact');toggleMobile()">Contact</a>
+</div>
+
+<!-- ================================================================
+     MAIN SCROLLING PAGE
+================================================================ -->
+<div id="page-main">
+
+  <!-- ── HOME ── -->
+  <section id="section-home">
+    <div class="section-inner">
+      <p class="home-subtitle">Portraits of Living Legends &amp; Personalities</p>
+      <img class="home-hero-img"
+        src="0_the_club_landing.jpg"
+        alt="The Club" />
+
+      <img class="home-arnold"
+        src="10_-_arnold_-_watercolour.jpg"
+        alt="Arnold Schwarzenegger portrait by Fabián Pérez" />
+
+      <img class="home-sig"
+        src="1_-_fabian_2_signature.png"
+        alt="Fabián Pérez Signature"
+        style="mix-blend-mode: multiply;" />
+
+      <div class="home-body">
+        <h3>Acclaimed artist Fabián Pérez known for portraits of celebrities, sportsmen, dignitaries, musicians, moguls and personalities, from Arnold Schwarznegger to The Pope, opens his Masterpiece Collection.</h3>
+        <h3>"The Club of Living Legends &amp; Personalities".</h3>
+        <h3>A limited body of work that hang in celebrities collections, sport stars homes, presidential palaces, music studios, and even the Vatican, is now available to a handful of you, Living Legends &amp; Personalities.</h3>
+        <h3>Book your Masterpiece Portrait. Limited spaces available.</h3>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── ABOUT ── -->
+  <section id="section-about">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+        <h1>About</h1>
+      </div>
+      <img style="width:100%;margin-bottom:8px;"
+        src="11_-_arnold_personal_portrait.jpg"
+        alt="Fabián Pérez with Arnold Schwarzenegger" />
+      <p class="img-caption">Fábian Pérez with Arnold Schwarzenegger</p>
+      <p>Acclaimed artist Fabián Pérez and entrepreneur Javier Olavarria, introduce the epitome of exclusivity. A once-in-a-lifetime opportunity to own a one-of-a-kind masterpiece portrait, painted by Fabián, who has captivated the world with his iconic celebrity art works.</p>
+      <p>A limited body of work that hang in celebrities collections, presidential palaces, music studios, and even the Vatican, is now available to a handful of you, Living Legends &amp; Personalities.</p>
+      <p>Fabián Pérez opens his Masterpiece Collection: The Club of Living Legends &amp; Personalities. The Club is limited to a handful of portraits, ensuring that each piece becomes a rare and coveted symbol of your refined taste and unparalleled success.</p>
+      <p>Fabián and Javier will be collaborating with you on every intricate detail to ensure that your commissioned portrait experience will be a memorable one. From the initial photoshoot conducted by Fabian himself, to selecting the perfect backdrop, to capturing your most distinguished features, this truly bespoke experience guarantees a result that is not just a mere portrait but an artistic embodiment of your legacy.</p>
+      <p>Indulge and embrace the enduring power of acquiring your masterpiece portrait, to become a part of The Club of Living Legends, and The Club's Book, which contains the portraits of all the celebrities and living legends body of work, including your portrait.</p>
+      <p>Secure your piece, and forever elevate your legacy.</p>
+      <p>Book your Masterpiece Portrait. Limited spaces available.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── FABIÁN PÉREZ ── -->
+  <section id="section-fabian">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+        <h1>Fabián Pérez</h1>
+        <h2>Biography</h2>
+      </div>
+      <img style="width:100%;margin-bottom:30px;"
+        src="fabian_perez_page_-_image_1.jpg"
+        alt="Fabián Pérez" />
+      <p>Born in 1967, in the city of Campana, Buenos Aires, in Argentina. Fabián Pérez is known for his paintings of tango, flamenco dancers and nightclub life, as well as for portraits of celebrities, sportsmen, dignitaries, musicians and personalities, has gained international attention and praise.</p>
+      <p>From a very young age, he started expressing himself through visual arts-drawing, but it was the loss of his parents at an early age that provided the momentum in Fabian's search for maturity in his artistic direction.</p>
+      <p>An ongoing journey of self-discovery began as the mental and physical disciplines gained through exceptional karate skills.</p>
+      <p>As a result, he began harnessing his sensory intuition and instincts, drawing even more deeply on the experiences of his childhood as he painted; channelling the warmth and humanity of those insights, relationships and situations on to each exquisite canvas.</p>
+      <p>At 16, Fabian decided to leave Argentina, and travelled different countries, opening up his channels of creativity. Spending time in Rio de Janeiro, then the Mediterranean for seven years, Japan for a year, and he finally arrived in Los Angeles in 1997 and began balancing the simple duties with work, life model and working hand at Universal Studios during the day, with a dedication to realizing his artistic flair each night.</p>
+      <p>This, he considers to be the most creative period of his life to date. Fabian's international status was confirmed with his appointment as the official artist to the 2010 Latin Grammy Awards, and as one of the official artists for both the 2010 Winter Olympics in Vancouver and the London 2012 Olympics.</p>
+      <p>With a rare, government-funded public exhibition for the nation, he has also been acknowledged in Argentina as an internationally acclaimed fine artist who has brought credit to his country, a huge tribute.</p>
+      <p>Fabian still lives in Los Angeles, California, with his wife and kids.</p>
+      <img style="width:100%;margin-top:20px;"
+        src="fabian_perez_page_-_image_2.jpg"
+        alt="Fabián Pérez in his studio" />
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── YOUR MASTERPIECE ── -->
+  <section id="section-masterpiece">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+        <h1>Your Masterpiece, What is included.</h1>
+      </div>
+      <!-- 1. Your Masterpiece -->
+      <img src="your_masterpiece_1.jpg" alt="Al Pacino" style="width:100%;" />
+      <p style="text-align:center;"><strong>1. Your Masterpiece</strong></p>
+      <p style="text-align:center;">Painted by Fabián Pérez at his studio in L.A., available in five sizes to choose from.</p>
+      <hr />
+
+      <!-- 2. The Frame -->
+      <img src="your_masterpiece_2.jpg" alt="The Frame" style="width:100%;" />
+      <p style="text-align:center;"><strong>2. The Frame</strong></p>
+      <p style="text-align:center;">The painting comes with a bespoke frame produced at Fabián's studio, offering two choices:</p>
+      <p style="text-align:center;">i. a dark frame with gold dots.</p>
+      <p style="text-align:center;">ii. a 24-carat gold foiled frame.</p>
+      <hr />
+
+      <!-- 3. The Photoshoot & 4. Photo Selection -->
+      <img src="your_masterpiece_3.jpeg" alt="The Photoshoot" style="width:100%;" />
+      <p style="text-align:center;font-style:italic;color:#888;">Valeria Marini</p>
+      <p style="text-align:center;"><strong>3. The Photoshoot</strong></p>
+      <p style="text-align:center;">Your photoshoot which includes hair, make up, designer and stylist, personally directed by Fabián, who will fly from L.A. to meet you at your desired address. Alternatively, you can provide us with your own photograph.</p>
+      <p style="text-align:center;"><strong>4. Photo Selection</strong></p>
+      <p style="text-align:center;">Fabián will curate and choose the top 5 photos, which will be presented to you for your approval and final selection.</p>
+      <hr />
+
+      <!-- Image 4 + 5. Logistics -->
+      <img src="your_masterpiece_4.jpg" alt="Ronnie Wood, The Rolling Stones" style="width:100%;" />
+      <p style="text-align:center;font-style:italic;color:#888;">Ronnie Wood, The Rolling Stones</p>
+      <p style="text-align:center;"><strong>5. Logistics</strong></p>
+      <p style="text-align:center;">Packing, shipping, shipping insurance, customs clearance, taxes and delivery of your commissioned masterpiece are included.</p>
+      <hr />
+
+      <!-- Image 5 + 6. The Reveal Ceremony -->
+      <img src="your_masterpiece_5.jpg" alt="Mike Tyson" style="width:100%;" />
+      <p style="text-align:center;font-style:italic;color:#888;">Mike Tyson</p>
+      <p style="text-align:center;"><strong>6. The Reveal Ceremony</strong></p>
+      <p style="text-align:center;">Tailor-made for you and 10 of your loved ones and close friends, the reveal ceremony will include your masterpiece handover, photoshoot, drinks and dinner with Fabian at a top venue chosen by Fabián.</p>
+      <hr />
+
+      <!-- Image 6 + 7. Handover Photoshoot -->
+      <img src="your_masterpiece_6.jpg" alt="Maradona" style="width:100%;" />
+      <p style="text-align:center;font-style:italic;color:#888;">Maradona</p>
+      <p style="text-align:center;"><strong>7. Handover Photoshoot</strong></p>
+      <p style="text-align:center;">Fabián will curate and choose the top photos which will be presented to you for your approval, final selection and inclusion in The Club Book of Living Legends.</p>
+      <hr />
+
+      <!-- Image 7 + 8. The Club Book -->
+      <img src="your_masterpiece_7.jpg" alt="Arnold Schwarzenegger" style="width:100%;" />
+      <p style="text-align:center;font-style:italic;color:#888;">Arnold Schwarzenegger</p>
+      <p style="text-align:center;"><strong>8. The Club Book</strong></p>
+      <p style="text-align:center;">You will receive ten copies of your personal edition of The Club Book. The book contains Fabián's portfolio of living legends portraits in one hundred pages, including four pages in the middle section of the book (Dignitaries, Royalty and Moguls), reserved and dedicated to you, featuring your photography, biography, your masterpiece portrait, reveal ceremony and handover photos with Fabián and any other information that you wish to include.</p>
+      <p style="text-align:center;">The Club Book is hard cover: (18" x 14" Inches or 45 CMS x 35 CMS).</p>
+      <p style="text-align:center;">A PDF sample available upon request.</p>
+      <hr />
+
+      <p style="text-align:center;"><strong>Due to the limited nature of this collection, we will assist you every step of the way to ensure that your journey into artistic history is an unforgettable experience.</strong></p>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a onclick="showPage('book-download')" style="display:inline-block;padding:14px 40px;background:#222;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;"
+          onmouseover="this.style.background='#fff';this.style.color='#222';this.style.border='1px solid #222';"
+          onmouseout="this.style.background='#222';this.style.color='#fff';this.style.border='1px solid #222';">
+          Download The Club Book
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── CONTACT ── -->
+  <section id="section-contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      </div>
+      <div class="contact-body">
+        <h3>"The Club of Living Legends &amp; Personalities".</h3>
+        <p>A limited body of work that hang in celebrities collections, presidential palaces, music studios, and even the Vatican, is now available to a handful of you, Living Legends &amp; Personalities.</p>
+        <p>Book your Masterpiece Portrait. Limited spaces available.</p>
+        <hr style="max-width:180px;margin:35px auto;" />
+        <img src="j_o_wax_seal.png" alt="Javier Olavarria Seal" style="width:160px;height:160px;object-fit:contain;display:block;margin:0 auto 30px;" />
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;">Contact:</p>
+        <p><a href="mailto:jo@theclub-legends.club">jo@theclub-legends.club</a></p>
+        <p><a href="http://theclub-legends.club" target="_blank" rel="noopener">theclub-legends.club</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Copyright. All rights reserved.</footer>
+</div><!-- end #page-main -->
+
+
+<!-- ================================================================
+     SEPARATE PAGES
+================================================================ -->
+
+<!-- ── FRAMES ── -->
+<div class="page" id="page-frames">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>FRAMES</h1>
+    </div>
+    <p style="text-align:center;">Our frames are handcrafted at Fabian's studio, utilising noble woods, natural dyes and 24 carat gold</p>
+    <img class="frames-img" src="frames_1.jpg" alt="Dark frame with gold dots" style="max-width:900px;" />
+    <p style="text-align:center;">The painting comes with a bespoke frame produced at Fabián's studio, offering two choices:</p>
+    <p style="text-align:center;">i. a dark frame with gold dots.</p>
+    <p style="text-align:center;">ii. a 24-carat gold foiled frame.</p>
+    <img class="frames-img" src="frames_2_new.jpg" alt="Gold frame" style="max-width:900px;" />
+    <h2 style="margin:30px 0 15px;text-align:center;">Sizes</h2>
+    <img class="frames-img" src="frames_3_sizes.jpg" alt="Frame Sizes" style="max-width:900px;" />
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── PRESS & CRITICS ── -->
+<div class="page" id="page-press">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>Press &amp; Critics</h1>
+    </div>
+    <img style="width:100%;margin-bottom:25px;" src="press_critics.jpg" alt="Fabián Pérez" />
+    <p class="press-pullquote">"Fabián Pérez is a contemporary artist to leave his footprints in his own lifetime, like few artists in the world."</p>
+    <p class="press-attr">(Carmela Russo - President of the Academy of Italian Artists)</p>
+    <h2 style="text-align:center;margin:35px 0 25px;">Internationally Acclaimed</h2>
+    <div class="press-quote">
+      <p>"I HAVE MET MANY ARTISTS IN MY TRAVELS, AND I HAVE MANY ARTISTS FROM THE OLD MASTERS THAT I ADMIRE. HOWEVER, I HAVE TO HONESTLY SAY THAT I HAVE NEVER MET IN ONE SINGLE PERSON, THE QUALITIES THAT FABIAN MANIFESTS AS AN ARTIST AND HUMAN BEING, THE ART WORLD IS FULL OF SHARKS, SADLY, IT SEEMS, THAT SOMEWHERE ALONG THE WAY A LOT OF PEOPLE FORGET WHY THEY STARTED THE JOURNEY, THEY FORGET TO LOVE, TO LIVE FOR WHAT THEY BELIEVE. BUT FABIAN PEREZ IS A GREAT EXAMPLE OF PASSION AND LOVE FOR WHAT HE DOES, AND THAT RESTORES AND HEALS THOSE AROUND HIM."</p>
+      <p class="attr">(ART TOUR INTERNATIONAL MAGAZINE - VIVIANA PUELLO - CURATOR - WRITER)</p>
+    </div>
+    <div class="press-quote">
+      <p>"WE ARE EXCITED TO HAVE AN ARTIST WITH SUCH UNDERSTANDING AND ENTHUSIASM FOR LATIN CULTURE AND ITS MUSIC. FABIAN'S TIMELESS ARTWORK IS FILLED WITH ENERGY AND EMOTION. HIS PIECE BRINGS A HUMAN ELEMENT TO OUR ARTWORK, A FIRST IN LATIN GRAMMY HISTORY, THAT CAPTURES THE EXCITEMENT AND PASSION OF THE PERFORMER. IT IS A PERFECT FIT FOR CELEBRATING 1O YEARS OF THE LATIN GRAMMY AWARDS."</p>
+      <p class="attr">(THE RECORDING ACADEMY - PRESIDENT GABRIEL ABAROA)</p>
+    </div>
+    <div class="press-quote">
+      <p>"FABIAN PEREZ, AN ARTIST WHO HAS REACHED A GLOBAL LEVEL OF RECOGNITION AND NOW SERVES AS A ROLE MODEL TO GIVE HOPE AND INSPIRATION TO OTHER ARTISTS. ONE OF THE MOST INFLUENTIAL AND CRITICALLY ACCLAIMED ARTISTS TO HAVE EMERGED FROM ARGENTINA DURING THE LAST DECADES"</p>
+      <p class="attr">(ART &amp; CULTURE - LA NAZIONE)</p>
+    </div>
+    <div class="press-quote">
+      <p>"I HAVE BEEN DEEPLY PRIVILEGED TO HAVE ENJOYED BOTH A PROFESSIONAL RELATIONSHIP AND A PERSONAL FRIENDSHIP WITH FABIAN FOR MANY YEARS NOW, AND IT HAS ALWAYS BEEN QUITE CLEAR TO ME THAT HE IS SOMETHING OUT OF THE ORDINARY. FOR AN INDIVIDUAL TO HAVE ANY ONE OF HIS EXTRAORDINARY ATTRIBUTES, THE RAW ARTISTIC TALENT, THE IMMENSE PERSONAL CHARM, OR THE FASCINATING AND ROMANTIC BACK STORY, WOULD BE ENOUGH TO SET THEM APART, BUT FABIAN COMBINES ALL THREE IN ONE CHARISMATIC AND INCOMPARABLE WHOLE."</p>
+      <p class="attr">(HELEN SWABY - CEO DEMONTFORT FINE ART - UK)</p>
+    </div>
+    <div class="press-quote">
+      <p>"HIS APPEARANCES NEVER FAIL TO ATTRACT AN AUDIENCE FROM ALL OVER THE COUNTRY, FROM FIRST TIME BUYERS TO SERIOUS INVESTORS, ADORING FANS AND MORE THAN A HANDFUL OF CELEBRITIES. BUT ALTHOUGH HE HAS A FORMIDABLE REPUTATION IN THE ART WORLD, HIS WARM PERSONALITY HAS MADE HIM A GREAT FAVOURITE WITH ART LOVERS, AND HE IS ALWAYS HAPPY TO POSE FOR PHOTOGRAPHS...HE IS A LOVELY GUEST."</p>
+      <p class="attr">(DORSET ECHO NEWS - UK)</p>
+    </div>
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── LIVING LEGENDS (overview) ── -->
+<div class="page" id="page-living-legends">
+  <div class="page-inner">
+    <div class="page-header"><p class="overtitle">Portraits of Living Legends &amp; Personalities</p></div>
+    <p class="gallery-intro">In this remarkable series, Fabián celebrates some of the most famous faces of our time, from film stars, sportsmen, musicians, tycoons, dignitaries, moguls and royalty.</p>
+    <img style="width:100%;" src="living_legends.jpg" alt="Living Legends" />
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── FILM LEGENDS ── -->
+<div class="page" id="page-film-legends">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>FILM LEGENDS</h1>
+    </div>
+    <p class="gallery-intro">Actors who are considered iconic, enduring, and culturally significant. These are film stars that have made a lasting impact on the world of cinema and have garnered a dedicated and often widespread fan base.</p>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Arnold Schwarzenegger</h3>
+      <img src="film_legends_1_arnold_schwarzenegger.jpg" alt="Arnold Schwarzenegger" />
+      <img src="film_legends_2_arnold_schwarzenegger.jpg" alt="Arnold Schwarzenegger" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Al Pacino</h3>
+      <img src="film_legends_3_al_pacino.jpg" alt="Al Pacino" />
+      <img src="film_legends_4_al_pacino.jpg" alt="Al Pacino" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Leo DiCaprio</h3>
+      <img src="film_legends_5_leo_dicaprio.jpg" alt="Leo DiCaprio" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Scorsese</h3>
+      <img src="film_legends_6_scorsese.jpg" alt="Scorsese" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Jason Statham</h3>
+      <img src="film_legends_7_jason_statham_.jpg" alt="Jason Statham" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Sylvester Stallone</h3>
+      <img src="stallone_2.jpg" alt="Sylvester Stallone" />
+      <img src="stallone_3.jpg" alt="Sylvester Stallone" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Mickey Rourke</h3>
+      <img src="film_legends_9_michkey_rourke.jpg" alt="Mickey Rourke" />
+      <img src="film_legends_10_michkey_rourke.jpg" alt="Mickey Rourke" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Penelope Cruz &amp; Javier Bardem</h3>
+      <img src="film_legends_12_penelope_cruz_y_javier_bardem.jpg" alt="Penelope Cruz & Javier Bardem" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Billy Bob Thornton</h3>
+      <img src="film_legends_13_billy_bob_thorton.jpg" alt="Billy Bob Thornton" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Jeff Goldblum</h3>
+      <img src="film_legends_15_jeff_goldblum.jpg" alt="Jeff Goldblum" />
+      <img src="film_legends_14_jeff_goldblum.jpg" alt="Jeff Goldblum" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Anthony Hopkins</h3>
+      <img src="film_legends_16_anthony_hopkins.jpg" alt="Anthony Hopkins" />
+    </div>
+
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── MUSIC LEGENDS ── -->
+<div class="page" id="page-music-legends">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>MUSIC LEGENDS</h1>
+    </div>
+    <p class="gallery-intro">Musicians whose creations have touched the heart and minds of millions around the world, as well as paved the way and inspired others.</p>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">The Rolling Stones</h3>
+      <h3 style="text-align:center;">Mick Jagger</h3>
+      <img src="music_legends_1_mick_jagger.jpg" alt="Mick Jagger" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Keith Richards</h3>
+      <img src="music_legends_2_keith_richards.jpg" alt="Keith Richards" />
+      <img src="music_legends_3_keith_richards.jpg" alt="Keith Richards" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Ronnie Wood</h3>
+      <img src="music_legends_4_ronney_wood.jpg" alt="Ronnie Wood" />
+      <img src="music_legends_5_ronney_wood.jpg" alt="Ronnie Wood" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Charlie Watts</h3>
+      <img src="music_legends_6_charlie_watts.jpg" alt="Charlie Watts" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">The Beatles</h3>
+      <h3 style="text-align:center;">Paul McCartney</h3>
+      <img src="music_legends_7_paul_mccartney.jpg" alt="Paul McCartney" />
+      <img src="music_legends_8_paul_mccartney_shot.jpg" alt="Paul McCartney" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Ringo Starr</h3>
+      <img src="music_legends_9_ringo.jpg" alt="Ringo Starr" />
+      <img src="music_legends_10_ringo___fabian.jpg" alt="Ringo Starr" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Guns N' Roses</h3>
+      <h3 style="text-align:center;">Axl Rose</h3>
+      <img src="music_legends_11_axel_rose.jpg" alt="Axl Rose" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Slash</h3>
+      <img src="music_legends_12_slash.jpg" alt="Slash" />
+      <img src="music_legends_13_slash.jpg" alt="Slash" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Rod Stewart</h3>
+      <img src="music_legends_14_rod_stewart.jpg" alt="Rod Stewart" />
+      <img src="music_legends_15_rod_stewart.jpg" alt="Rod Stewart" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Brian May</h3>
+      <img src="music_legends_16_brian_may.jpg" alt="Brian May" />
+      <img src="music_legends_17_brian_may.jpg" alt="Brian May" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Ravi Shankar</h3>
+      <img src="music_legends_18_ravi_shankar.jpg" alt="Ravi Shankar" />
+      <img src="music_legends_19_ravi_shankar.jpg" alt="Ravi Shankar" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Quincy Jones</h3>
+      <img src="music_legends_20_quincy_jones.jpg" alt="Quincy Jones" />
+      <img src="music_legends_21_quincy_jones.jpg" alt="Quincy Jones" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Brendon Urie</h3>
+      <img src="music_legends_22_brandon_urie.jpg" alt="Brendon Urie" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Carlos Santana</h3>
+      <img src="music_legends_23_carlos_santana.jpg" alt="Carlos Santana" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Pitbull</h3>
+      <img src="music_legends_24_pitbull_1.jpg" alt="Pitbull" />
+      <img src="music_legends_25_pitbull.jpg" alt="Pitbull" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Fabri Fibra</h3>
+      <img src="music_legends_26_fabri_fibra.jpg" alt="Fabri Fibra" />
+      <img src="music_legends_27_fabri_fibra_2.jpg" alt="Fabri Fibra" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Placido Domingo</h3>
+      <img src="music_legends_28_placido_domingo.jpg" alt="Placido Domingo" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">INXS — Garry Gary Beers</h3>
+      <img src="music_legends_29_inxs.jpg" alt="INXS" />
+      <img src="music_legends_30_inxs_1_1_-_garry_gary_beers.jpg" alt="Garry Gary Beers" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Vasco Rossi</h3>
+      <img src="music_legends_31_vasco_rossi.jpg" alt="Vasco Rossi" />
+      <img src="music_legends_32_vaso_rossi_copy.jpg" alt="Vasco Rossi" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">MOTÖRHEAD — Phil Campbell III</h3>
+      <img src="music_legends_33_phil_campbell.jpg" alt="Phil Campbell" />
+      <img src="music_legends_34_phil_campbell.jpg" alt="Phil Campbell" style="margin-top:14px;" />
+      <img src="music_legends_35_phil_campbell.jpg" alt="Phil Campbell" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Jennifer Lopez</h3>
+      <img src="music_legends_36_jennifer_lopez.jpg" alt="Jennifer Lopez" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Lady Gaga</h3>
+      <img src="music_legends_37_lady_gaga.jpg" alt="Lady Gaga" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Taylor Swift</h3>
+      <img src="music_legends_38_taylor_swift.jpg" alt="Taylor Swift" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Ariana Grande</h3>
+      <img src="music_legends_39_ariana_grande.jpg" alt="Ariana Grande" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Carmine Rojas</h3>
+      <img src="music_legends_40_carmine_rojas.jpg" alt="Carmine Rojas" />
+      <img src="music_legends_41_carmine_rojas.jpg" alt="Carmine Rojas" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Sting</h3>
+      <img src="music_legends_42_sting.jpg" alt="Sting" />
+    </div>
+
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── DIGNITARIES ── -->
+<div class="page" id="page-dignitaries">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>DIGNITARIES, ROYALTY &amp; MOGULS</h1>
+    </div>
+    <p class="gallery-intro">Current and past remarkable people who have left their influence in the world.</p>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Pope Francis</h3>
+      <img src="dignitaries_1_the_pope.jpg" alt="Pope Francis" />
+      <img src="dignitaries_2_the_pope.jpg" alt="Pope Francis" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Queen Elizabeth II</h3>
+      <img src="dignitaries_3_queen_elizabeth_ii.jpg" alt="Queen Elizabeth II" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Princess Diana</h3>
+      <img src="dignitaries_4_princes_diana.jpg" alt="Princess Diana" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Charles Spencer — 9th Earl Spencer</h3>
+      <img src="dignitaries_5_lord_spencer_1.jpg" alt="Lord Spencer" />
+      <img src="dignitaries_6_lord_spencer_fabian_perez_at_althorp__82.jpg" alt="Lord Spencer at Althorp" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Countess Karen Spencer</h3>
+      <img src="dignitaries_7_lady_spencer.jpg" alt="Countess Karen Spencer" />
+      <img src="dignitaries_8_lady_spencer.jpg" alt="Countess Karen Spencer" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Mauricio Macri — President of Argentina 2015–2019</h3>
+      <img src="dignitaries_9_macri_6.jpg" alt="Mauricio Macri" />
+      <img src="dignitaries_10_macri.jpg" alt="Mauricio Macri" style="margin-top:14px;" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Juliana Macri — First Lady of Argentina 2015–2019</h3>
+      <img src="dignitaries_11_juliana_awada_-_argentina_first_lady.jpg" alt="Juliana Awada" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Elon Musk</h3>
+      <img src="dignitaries_12_elon_musk.jpg" alt="Elon Musk" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Gigi Hadid</h3>
+      <img src="dignitaries_13_gigi_hadid.jpg" alt="Gigi Hadid" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Valeria Marini</h3>
+      <img src="dignitaries_14_valeria_marini.jpg" alt="Valeria Marini" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">David &amp; Victoria Beckham</h3>
+      <img src="dignitaries_15_david_and_victoria_beckham.jpg" alt="David and Victoria Beckham" />
+    </div>
+
+    <div class="legend-entry">
+      <h3 style="text-align:center;">Javier Milei — President of Argentina 2024–2028</h3>
+      <img src="dignitaries_16_javier_milei.jpg" alt="Javier Milei" />
+      <img src="dignitaries_17_javier_milei.jpg" alt="Javier Milei" style="margin-top:14px;" />
+    </div>
+
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── SPORTS LEGENDS ── -->
+<div class="page" id="page-sports-legends">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>SPORTS LEGENDS</h1>
+    </div>
+    <p class="gallery-intro">Sporting champions both active and retired, who have distinguished themselves not only in their sporting exploits but also for their example as inspiring role models for the new generations.</p>
+
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Leonel Messi</h3>
+      <img src="sports_legends_1_leonel_messi.jpg" alt="Leonel Messi" />
+      <img src="sports_legends_2_leonel_messi_2.jpg" alt="Leonel Messi" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Diego Maradona</h3>
+      <img src="sports_legends_3_maradona.jpg" alt="Diego Maradona" />
+      <img src="sports_legends_4_maradona_fabian.jpg" alt="Diego Maradona &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Mike Tyson</h3>
+      <img src="sports_legends_5_mike_tyson.jpg" alt="Mike Tyson" />
+      <img src="sports_legends_6_mike_tyson_fabian.jpg" alt="Mike Tyson &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Pep Guardiola</h3>
+      <img src="sports_legends_7_pep_guardiola.jpg" alt="Pep Guardiola" />
+      <img src="sports_legends_8_pep_guardiola_fabian.jpg" alt="Pep Guardiola &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Kun Agüero</h3>
+      <img src="sports_legends_9_kun_aguero.jpg" alt="Kun Agüero" />
+      <img src="sports_legends_10_kun_aguero_fabian.jpg" alt="Kun Agüero &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>David Beckham</h3>
+      <img src="sports_legends_11_david_beckham.jpg" alt="David Beckham" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Rafael Nadal</h3>
+      <img src="sports_legends_12_rafael_nadal.jpg" alt="Rafael Nadal" />
+      <img src="sports_legends_13_rafael_nadal_fabian.jpg" alt="Rafael Nadal &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Roger Federer</h3>
+      <img src="sports_legends_14_roger_federer.jpg" alt="Roger Federer" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Lewis Hamilton</h3>
+      <img src="sports_legends_15_lewis_hamilton.jpg" alt="Lewis Hamilton" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Zlatan Ibrahimović</h3>
+      <img src="sports_legends_16_zlatan.jpg" alt="Zlatan Ibrahimović" />
+      <img src="sports_legends_17_zlatan_fabian.jpg" alt="Zlatan &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Evander Holyfield</h3>
+      <img src="sports_legends_18_evander_holyfield.jpg" alt="Evander Holyfield" />
+      <img src="sports_legends_19_evander_holyfield_fabian.jpg" alt="Evander Holyfield &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Alessandro Del Piero</h3>
+      <img src="sports_legends_20_alessandro_del_piero.jpg" alt="Alessandro Del Piero" />
+      <img src="sports_legends_21_alessandro_del_piero_fabian.jpg" alt="Alessandro Del Piero &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Anthony Joshua</h3>
+      <img src="sports_legends_22_anthony_joshua.jpg" alt="Anthony Joshua" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Ronaldinho</h3>
+      <img src="sports_legends_23_ronaldinho.jpg" alt="Ronaldinho" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>John Terry</h3>
+      <img src="sports_legends_24_john_terry.jpg" alt="John Terry" />
+      <img src="sports_legends_25_john_terry_fabian.jpg" alt="John Terry &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Mauricio Pochettino</h3>
+      <img src="sports_legends_26_pochetino.jpg" alt="Mauricio Pochettino" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Sergio Ramos</h3>
+      <img src="sports_legends_27_sergio_ramos.jpg" alt="Sergio Ramos" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Carlos Tevez</h3>
+      <img src="sports_legends_28_carlos_tevez.jpg" alt="Carlos Tevez" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Luka Modrić</h3>
+      <img src="sports_legends_29_luka_modric.jpg" alt="Luka Modrić" />
+      <img src="sports_legends_30_luka_modric_fabian.jpg" alt="Luka Modrić &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Ángel Di María</h3>
+      <img src="sports_legends_31_angel_di_maria.jpg" alt="Ángel Di María" />
+      <img src="sports_legends_32_angel_di_maria_fabian.jpg" alt="Ángel Di María &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+    <div class="legend-entry" style="text-align:center;">
+      <h3>Julio César Chávez</h3>
+      <img src="sports_legends_33_julio_cesar_chavez.jpg" alt="Julio César Chávez" />
+      <img src="sports_legends_34_julio_cesar_chavez_fabian.jpg" alt="Julio César Chávez &amp; Fabián Pérez" style="margin-top:14px;" />
+    </div>
+
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── NEO-EMOTIONALISM ── -->
+<div class="page" id="page-neo">
+  <div class="page-inner" style="text-align:center;">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>Neo-Emotionalism</h1>
+    </div>
+    <p class="neo-lead">Capturing the essence of character in each portrait, provoking a visceral reaction which inspires the viewers, and it has a liberating effect on Fabian himself as an artist.</p>
+    <p class="neo-byline"><strong>FABIAN PEREZ</strong></p>
+    <p class="neo-subtitle">THE CREATOR AND MASTER OF NEO-EMOTIONALISM</p>
+    <p>The powerful portraiture of Los Angeles-based artist Fabián Pérez has won international acclaim—and today, he is one of the world's most collected figurative artists.</p>
+    <img style="width:100%;margin:25px 0;" src="neo-emotionalism_1_book.jpg" alt="Neo-Emotionalism — A Ten Year Retrospective" />
+    <p>Capturing the essence of character is perhaps the most challenging aspect of portraiture—yet it's at the heart of each painting and sculpture by Argentinian-born, Los Angeles-based artist Fabian Perez. Each evocative gesture or quirk of expression realised in the artist's signature strokes offers a glimpse into the inner world of the characters he captures, from dancers and couples to circus performers, musicians, and celebrities.</p>
+    <p class="blockquote-inline">"With every portrait, I paint people's bodies to capture their soul. It is fascinating to see how our bodies react according to the way we think, the way we treat them, and the way they respond to unconscious impulses sent by the brain."</p>
+    <p>The artist describes this idiosyncratic style as "neo-emotionalism" for the visceral reaction it inspires in viewers and the liberating effect it has on himself as an artist.</p>
+    <img style="width:100%;margin:25px 0;" src="neo-emotionalism_2_fabian.jpg" alt="Fabián Pérez" />
+    <p>Today, he has adapted his work around his family, painting in the mornings and afternoons when the light is at its best. He works in a studio the size of a double garage, simply furnished with an easel, canvases, and a small table overflowing with colored paints and brushes. Artbooks and sculpture casts are piled onto shelves, and his paintings, photographs are displayed alongside work by his children.</p>
+    <p class="blockquote-inline">"Getting into my studio is like going into a bubble full of energy. When I start, I feel pressure but also enthusiasm for being able to express myself."</p>
+    <img style="width:100%;margin:25px 0;" src="neo-emotionalism_3_paintings.jpg" alt="Fabián Pérez paintings" />
+    <p>While Perez is perhaps best known for his portraits of "living legends"—from Pope Francis to Arnold Schwarznegger—he also takes commissions and has worked on close to 100 personal portraits of people from across the globe in the last two years alone.</p>
+    <p class="blockquote-inline">"I like to do my own photoshoots to ensure I get the perfect picture with the correct lighting and atmosphere to translate to the canvas. This moment is very important to understand the essence of the client's personality."</p>
+    <img style="width:100%;margin:25px 0;" src="neo-emotionalism_4_paintings.jpg" alt="Fabián Pérez paintings" />
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── BOOK DOWNLOAD ── -->
+<div class="page" id="page-book-download">
+  <div class="page-inner">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>The Club Book Download</h1>
+    </div>
+    <div style="text-align:center;">
+      <img src="the_club_book_1.jpg" alt="The Club Book" style="width:100%;max-width:1200px;margin:0 auto 40px;display:block;" />
+      <p>Download a PDF sample of The Club Book — Portraits of Living Legends &amp; Personalities by Fabián Pérez.</p>
+      <br />
+      <a href="THE_CLUB_Book.pdf" download="THE_CLUB_Book.pdf"
+        style="display:inline-block;padding:14px 40px;background:#222;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;"
+        onmouseover="this.style.background='#fff';this.style.color='#222';this.style.border='1px solid #222';"
+        onmouseout="this.style.background='#222';this.style.color='#fff';">
+        Download The Club Book (PDF)
+      </a>
+    </div>
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ── SALES PACK DOWNLOAD ── -->
+<div class="page" id="page-sales-download">
+  <div class="page-inner" style="text-align:center;">
+    <div class="page-header">
+      <p class="overtitle">Portraits of Living Legends &amp; Personalities</p>
+      <h1>Sales Pack Download</h1>
+    </div>
+
+    <!-- PASSWORD GATE -->
+    <div id="sales-gate" style="max-width:400px;margin:0 auto 40px;">
+      <p style="font-family:'Libre Baskerville',Georgia,serif;font-size:1rem;margin-bottom:20px;font-style:italic;">Please enter the password to access the Sales Pack.</p>
+      <input id="sales-password" type="password"
+        placeholder="Enter password"
+        style="width:100%;padding:12px 16px;font-size:0.9rem;border:1px solid #ccc;outline:none;font-family:'Source Sans 3',sans-serif;letter-spacing:0.06em;text-align:center;margin-bottom:14px;"
+        onkeydown="if(event.key==='Enter') checkSalesPassword()" />
+      <button onclick="checkSalesPassword()"
+        style="display:inline-block;padding:13px 40px;background:#222;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;">
+        Submit
+      </button>
+      <p id="sales-error" style="color:#c00;font-size:0.8rem;margin-top:12px;display:none;">Incorrect password. Please try again.</p>
+    </div>
+
+    <!-- DOWNLOAD SECTION (hidden until password correct) -->
+    <div id="sales-downloads" style="display:none;max-width:500px;margin:0 auto;">
+      <p style="font-family:'Libre Baskerville',Georgia,serif;font-size:1rem;margin-bottom:30px;font-style:italic;">Click the button below to download all Sales Pack documents.</p>
+
+      <a href="THE_CLUB_Sales_Pack.zip" download="THE_CLUB_Sales_Pack.zip"
+        style="display:inline-block;padding:16px 40px;background:#222;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;line-height:2;">
+        Click to Download Sales Pack:<br>
+        <span style="font-size:0.72rem;letter-spacing:0.06em;text-transform:none;font-weight:300;line-height:2.2;">
+          1. THE CLUB Agent Contract<br>
+          2. THE CLUB Agent Sales Sheet<br>
+          3. THE CLUB Client Booking Form<br>
+          4. THE CLUB Client Contract<br>
+          5. THE CLUB Client Model Release
+        </span>
+      </a>
+    </div>
+  </div>
+  <footer>Copyright. All rights reserved.</footer>
+</div>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+  function showMain() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-main').style.display = 'block';
+  }
+
+  function showPage(id) {
+    document.getElementById('page-main').style.display = 'none';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const t = document.getElementById('page-' + id);
+    if (t) { t.classList.add('active'); window.scrollTo(0, 0); }
+  }
+
+  function goHome() {
+    showMain();
+    window.scrollTo(0, 0);
+  }
+
+  // Contact form AJAX submission
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(contactForm);
+      fetch('https://formspree.io/f/xyzygqnb', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          contactForm.reset();
+          contactForm.style.display = 'none';
+          document.getElementById('contact-success').style.display = 'block';
+        } else {
+          document.getElementById('contact-error').style.display = 'block';
+        }
+      }).catch(function() {
+        document.getElementById('contact-error').style.display = 'block';
+      });
+    });
+  }
+
+  function checkSalesPassword() {
+    var val = document.getElementById('sales-password').value;
+    if (val === '5343637') {
+      document.getElementById('sales-gate').style.display = 'none';
+      document.getElementById('sales-downloads').style.display = 'block';
+    } else {
+      document.getElementById('sales-error').style.display = 'block';
+    }
+  }
+
+  function downloadAllSalesPack() {
+    var files = [
+      '1__THE_CLUB_Agent_Contract.pdf',
+      '2__THE_CLUB_Agent_Sales_Sheet.pdf',
+      '3__THE_CLUB_Client_Booking_Form.pdf',
+      '4__THE_CLUB_Client_Contract.pdf',
+      '5__THE_CLUB_Client_Model_Release.pdf'
+    ];
+    files.forEach(function(file, i) {
+      setTimeout(function() {
+        var a = document.createElement('a');
+        a.href = file;
+        a.download = file;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }, i * 600);
+    });
+  }
+
+  function scrollToSection(sectionId) {
+    showMain();
+    setTimeout(function() {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const offset = el.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }, 50);
+  }
+
+  function toggleMobile() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.querySelector('.hamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
